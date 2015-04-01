@@ -21,6 +21,7 @@ h6 {
 
 h1 {
   font-size: $base-font-size * 1.75;
+  margin: $small-spacing 0 $small-spacing 0;
 }
 
 h2 {
@@ -66,8 +67,17 @@ picture {
   max-width: 100%;
 }
 
-pre {
+pre, code {
   font-family: $code-font-family;
   font-size: $base-font-size;
   line-height: $code-line-height;
 }
+
+code {
+  line-height: $body-line-height;
+}
+
+.footnote {
+  font-size: $base-font-size * .75;
+}
+
