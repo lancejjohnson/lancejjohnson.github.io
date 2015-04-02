@@ -1,0 +1,77 @@
+---
+title: Why blog
+date: 2015-04-02 09:15 EDT
+tags: blogging
+---
+
+# Why Blog
+
+[In an earlier post](/2015/04/01/me-write-a-developer-blog-no-way/) I talked
+about my unexpected entrance into the world of blogging about code. I thought I
+would take some time to talk about why I've taken on this task.
+
+## To Learn
+
+I love learning! I love diving into a book or exercise, ready to expand my
+knowledge and sharpen my skills. But I find regularly that, by the time I've
+reached the end, the beginning escapes me. Time is fleeting and sometimes just
+getting through the book feels like all the time I have. Yet I learn and retain
+so much more if I take the time to digest the material and explain it to myself
+or someone else. Blogging, I hope, will be a chance to do that digesting and
+explaining.
+
+## To Teach
+
+I love to teach! At a recent hack night at my local Ruby meetup, I was able to
+help someone struggling through a homework assignment for her boot camp. It was
+invigorating to take what I've learned and help someone else learn it as well,
+knowing that I was in her exact position not long ago. There were far more
+capable developers in the room than I but I was able to help someone make a few
+more steps in their journey having walked them myself. I hope blogging, even
+though we aren't face-to-face in this conversation, may help someone in a
+similar way.
+
+## To Remember
+
+In many a Ruby Rogues podcast, one of the Rogues mentions blogging as a way to
+recall what they've learned. One Google search and they're back to their blog
+reading their own answer to the question they now face but had forgotten. I
+hope that blogging will be a repository of knowledge that I can refer back to
+in order to remember.
+
+## To Care
+
+Ben Orenstein talks about blogging as a way to demonstrate you care about your
+craft. I hope blogging will be that. But I also anticipate blogging will be a
+*means* of growing my passion, not just a demonstration of it. I hope that
+taking the time to think through and describe an issue will cultivate even
+greater concern about quality in my work.
+
+## To Communicate
+
+If you've read anything about career skills needed by a developer to work at a
+desirable company on a quality team, you've read about the importance of
+quality communication. One person may be a master of algorithms but unable to
+explain a solution to another developer. Another may write beautiful
+abstractions but can't compose a clear email to a stakeholder. Solid developers
+need both programming and communication chops. Blogging is an opportunity to
+practice the skills of clear communication.
+
+## To Give
+
+One thing I enjoy about being part of the programming community is the
+willingness to give. From the open-source nature of so many projects, to
+conferences whose video archives are free, to extensive blogging, to free
+online books and tutorials, to local meetups, and even the paid resources that
+are available, I have found so many programmers who are willing to share their
+time, knowledge, and creativity. In blogging, I hope to be an active, giving
+member of this community.
+
+## To Enjoy
+
+It seems the act of reflecting on and then expressing our experience heightens
+that experience, making it even more enjoyable. This is one reason we have fish
+stories and detailed recounts of races. Telling others about our experiences
+gives us more joy in them than without the telling. I hope in this blog I will
+find even greater joy in my journey of developing software than I would without
+it.
