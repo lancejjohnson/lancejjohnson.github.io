@@ -1,6 +1,6 @@
 ---
 title: That's not my job! Extract class refactor
-date: 2015-04-09 18:35 EDT
+date: 2015-04-13 06:00 EDT
 tags: refactoring, extract class, code smells
 ---
 
