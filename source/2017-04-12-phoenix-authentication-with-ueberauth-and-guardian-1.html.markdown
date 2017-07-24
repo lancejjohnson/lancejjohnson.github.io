@@ -101,7 +101,7 @@ defmodule Yauth.AuthController do
 end
 ```
 
-This module is a placeholder for whatever controller you'd like to use in your application (e.g. `SessionController`, `SignupController`, etc.). In other words, an `AuthController` isn't *required*; just a controller to which your router will direct requests. That controller passes all requests through the Ueberauth plug, modifying the connection with authentication data. <!-- Need to flesh out what the plug actually does -->
+This module is a placeholder for whatever controller you'd like to use in your application (e.g. `SessionController`, `SignupController`, etc.). In other words, an `AuthController` isn't *required* per se; just a controller to which your router will direct requests. That controller passes all requests through the Ueberauth plug, modifying the connection with authentication data. <!-- Need to flesh out what the plug actually does -->
 
 Now that you have your controller, you need to provide authentication routes for the application. Again, following the README directly.
 
@@ -135,7 +135,7 @@ auth_path POST /auth/identity/callback   Yauth.AuthController :identity_callback
 
 Notice how the routes `/auth/:provider/callback` are `GET` requests whereas the route to `/auth/identity/callback` is a `POST` request. `GET` is the default HTTP verb for Ueberauth callbacks but you configured the identity strategy to use `POST` instead.
 
-Now that you've added Ueberauth dependencies and applications, configured the identity strategy, and added the routes needed by the application, you need to implment the controller to handle the incoming requests. First, you need the `request/2` function. What is this function's responsibility? It needs to present the user with a form by which they may establish their identity. Continue using the generic language of the README and provide a "request" html page and send the intial `auth` values as `nil`.
+Now that you've added Ueberauth dependencies and applications, configured the identity strategy, and added the routes needed by the application, you need to implement the controller to handle the incoming request. First, you need the `request/2` function. What is this function's responsibility? It needs to present the user with a form by which they may establish their identity. Continue using the generic language of the README and provide a "request" html page and send the intial `auth` values as `nil`.
 
 ```elixir
 defmodule Yauth.AuthController do
@@ -159,7 +159,7 @@ end
 
 Provide the html template to render. In the initial setup in a previous post you created a form under `web/templates/signup/new.html.eex`. Copy that over to the auth directory and make some adjustments.
 
-```eex
+```html
 <div class="row">
   <div class="container">
     <h1>Sign Up or Login</h1>
