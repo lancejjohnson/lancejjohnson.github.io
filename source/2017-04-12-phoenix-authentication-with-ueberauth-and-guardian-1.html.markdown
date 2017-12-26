@@ -87,7 +87,7 @@ config :ueberauth, Ueberauth,
   ]
 ```
 
-Ueberauth Identity accepts a list of configurable attributes. <!-- TODO: Research the options (I still haven't found the full list of what those attributes are, but hey.) --> By default, Ueberauth accepts GET requests for incoming callback requests. For the web form, however, you'll want to receive a POST request instead, so you'll configure the `callback_methods` option. The parameters from the form will be at the root of the request parameters. If you prefer to nest those parameters under a specific key, you can provide that key in the `param_nesting` configuration. Rather than receive the parameters a the root of the map, you'll now receive that map under the "user" key.
+Ueberauth Identity accepts a list of configurable attributes. <!-- TODO: Research the options (I still haven't found the full list of what those attributes are, but hey.) --> By default, Ueberauth accepts GET requests for incoming callback requests. For the web form, however, you'll want to receive a POST request instead, so you'll configure the `callback_methods` option. The parameters from the form will be at the root of the request parameters. If you prefer to nest those parameters under a specific key, you can provide that key in the `param_nesting` configuration. Rather than receive the parameters at the root of the map, you'll now receive that map under the "user" key.
 
 At this point the configuration is set up and we'll follow the README instructions for Ueberauth Identity woodenly to get things working and try to understand how the system works.
 
@@ -198,7 +198,7 @@ def identity_callback(%{assigns: %{ueberauth_auth: auth}} = conn, params) do
       |> put_flash(:info, "Successfully authenticated.")
       |> put_session(:current_user, user)
       |> redirect(to: "/")
-    { :error, reason } ->
+    {:error, reason} ->
       conn
       |> put_flash(:error, reason)
       |> redirect(to: "/")
@@ -231,7 +231,7 @@ Here's what the full auth structure looks like when you submit `foo@foo.com` and
 %Ueberauth.Auth{credentials: %Ueberauth.Auth.Credentials{expires: nil,
   expires_at: nil, other: %{password: "password", password_confirmation: nil},
   refresh_token: nil, scopes: [], secret: nil, token: nil, token_type: nil},
- extra: %Ueberauth.Auth.Extra{raw_info: %{"_csrf_token" => "OxhcKmsHFB4WOwYuXUAhYV4nJAokJgAAsOmrSAsoSIOGmwq5oMNlcQ==",
+ extra: %Ueberauth.Auth.Extra{raw_info: %{"_csrf_token" => "...",
     "_utf8" => "✓",
     "user" => %{"email" => "foo@foo.com", "password" => "password"}}},
  info: %Ueberauth.Auth.Info{description: nil, email: "foo@foo.com",
@@ -291,7 +291,7 @@ Earlier, you called a function for creating a user changeset directly from the a
 *  Cast and validate the struct with those values
 *  Encrypt the password the user provided and add that to the struct.
 
-Ueberauth doesn't do anything related to password encryption so you need to pull in an encryption library. Add Comeonin to your `mix` file and acquire it with `mix deps.get`. You'll want to use the function `Comeonin.Bcrypt.hashpwsalf/1` to encrypt the password, so import this function into the model.
+Ueberauth doesn't do anything related to password encryption so you need to pull in an encryption library. Add Comeonin to your `mix` file and acquire it with `mix deps.get`. You'll want to use the function `Comeonin.Bcrypt.hashpwsalt/1` to encrypt the password, so import this function into the model.
 
 ```elixir
 defmodule Yauth.User do

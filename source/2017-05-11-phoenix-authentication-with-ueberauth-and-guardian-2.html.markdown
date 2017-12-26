@@ -6,7 +6,7 @@ tags: elixir, phoenix, authentication
 
 In my previous two posts, I walked through setting up a basic Phoenix application that authenticates using Ueberauth with the Ueberauth Identity strategy. Next, I'm going to describe using Guardian to store the user in the session and load the user on subsequent requests. Basically, we'll be implementing remembering the user after they have signed in, load the user during requests, and the ability to sign out.
 
-A web application "remembers" a user by storing encrypted information about the user in the "session". The session is a storage mechanism that persists on the user's web browser and that is passed back and forth between the user and the web application on each request. Each time the application receives a request, it compares the information stored in the session with what it knows about the user. If the information compares accurately, the application can trust that request and reply to the request with information exclusive to the user.
+A web application "remembers" a user by storing encrypted information about the user in the "session". The session is a storage mechanism that persists on the user's web browser and that is passed back and forth between the user and the web application on each request. Each time the application receives a request, it compares the information stored in the session with what it knows about the user. If the comparison is accurate, the application can trust that request and reply to the request with information exclusive to the user.
 
 The web application may choose to store information about the user (e.g. an encrypted form of the user's password) in a database and retrieve that information on each request. With JWT, the web application may compare the token provided from the user with its encryption mechanism. If the token matches what the application uses to sign its tokens, the web application can trust the request and decrypt the information directly.
 
@@ -132,7 +132,6 @@ defmodule Yauth.GuardianSerializer do
   def for_token(%Yauth.User{id: id}) do
     {:ok, "User:#{id}"}
   end
-
   def for_token(_) do
     {:error, "Unknown resource type."}
   end
