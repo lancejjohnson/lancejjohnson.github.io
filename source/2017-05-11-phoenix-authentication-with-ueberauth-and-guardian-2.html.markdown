@@ -53,7 +53,6 @@ NOTE: I'm following this blog for the first pass through.
 
 http://blog.overstuffedgorilla.com/simple-guardian/
 
-
 # Sign In
 
 Guardian is responsible for handling the session storage.
@@ -139,9 +138,10 @@ defmodule Yauth.GuardianSerializer do
   def from_token("User:" <> id) do
     # TODO: I don't know if loading the user is strictly necessary. I think
     # having the id would be sufficient for future queries? Also, if you
-    # serialize the full user object you would everything you need to display
+    # serialize the full user object you would have
+    # everything you need to display
     # and have the id to make queries for associations.
-    Yauth.Repo.get(Yauth.User, id)
+    {:ok, Yauth.Repo.get(Yauth.User, id)}
   end
 
   def from_token(_) do
@@ -223,6 +223,8 @@ defmodule Yauth.UserController do
   plug Guardian.Plug.EnsureAuthenticated, handler: __MODULE__
 
   def show(conn, %{"id" => user_id}) do
+    # Nota Bene: using Guardian to get the resource from the connection
+    # that was loaded in the LoadResource plug.
     user = Guardian.Plug.current_resource(conn)
     render(conn, :show, user: user)
   end
@@ -242,6 +244,65 @@ Every request to this controller will pass the connection through the `EnsureAut
 ## Implementing Sign Out
 
 To implement sign out, need to first change the UI to differentiate between a signed in user and a not signed in user.
+
+This is a basic approach to switching the UI view based on the logged in user.
+
+```html
+<%= if user = Guardian.Plug.current_resource(@conn) do %>
+  <ul class="nav navbar-nav navbar-right">
+    <li>
+      <%= user.email %>
+    </li>
+    <li>
+      <a href="<%= auth_path(@conn, :logout) %>">Logout</a>
+    </li>
+  </ul>
+<% else %>
+  <ul class="nav navbar-nav navbar-right">
+    <li>
+      <a href="<%= auth_path(@conn, :request, "identity") %>">Login</a>
+    </li>
+    <li>
+      <a href="<%= auth_path(@conn, :request, "identity") %>">Sign Up</a>
+    </li>
+  </ul>
+<% end %>
+```
+
+Now you need a path to handle the request to log out.
+
+```elixir
+defmodule Yauth.Router do
+  # ...
+  scope "/auth", Yauth do
+    pipe_through :browser
+
+    # ...
+    # NB: This must *precede* the "/:provider" route
+    get "/logout", AuthController, :logout
+  end
+  # ...
+end
+```
+
+Now you need to add the controller action. Guardian also provides the ability to clear all the session information for the logged in resource, so you just need to add that do you controller action.
+
+```elixir
+defmodule Yauth.AuthController do
+  # ...
+  def logout(conn, _params) do
+    conn
+    |> Guardian.Plug.sign_out
+    |> put_flash(:info, "Logged out")
+    |> redirect(to: "/")
+  end
+  # ...
+end
+```
+
+After clicking the Log Out link, the user can no longer access resources that required authentication. Instead they are redirected to the home page.
+
+At this point the user is able to sign up for an account, sign in, sign out, and access protected resources.
 
 
 ## All the Plugs
