@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
-gem "middleman", "~> 3.3.10"
-gem "middleman-blog", "~> 3.5.3"
+gem "middleman", "~> 4.3", ">= 4.3.5"
+gem "middleman-blog", "~> 4.0.3"
 gem "middleman-deploy"
 gem "middleman-livereload"
 gem "middleman-syntax"
